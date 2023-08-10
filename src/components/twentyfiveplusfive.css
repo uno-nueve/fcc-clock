@@ -1,0 +1,249 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700;800;900&family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --clock-font: 'Handjet', monospace;
+    --app-font: 'Inter', sans-serif;
+}
+
+/* Colors */
+:root {
+    --font-color: #FBF5F3;
+    --backgound-gradient: radial-gradient(circle, rgba(202,208,255,1) 0%, rgba(227,227,227,1) 100%); 
+    --button-secondary: #89c2d9;
+    --button-secondary-dark: #468faf;
+    --button-secondary-light: #a9d6e5;
+    --button-primary: #772e25;
+    --button-primary-dark: #1a1423;
+    --button-primary-ligth: #ff9770;
+    --main-color: #FFFCF2;
+    --panel-color: #FFD670;
+    --session-color: #E9FF70;
+    --break-color: #ff758f;
+    --inactive-color: #e0e1dd;
+}
+
+/* General Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--backgound-gradient);
+    font-family: var(--app-font);
+    font-size: 16px;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Layout Styles */
+.timer-wrapper {
+    width: 800px;
+    height: 300px;
+    background: var(--main-color);
+    border-radius: 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 15px;
+}
+
+.timer-display {
+    background: black;
+    border-radius: 25px;
+    grid-column: 2/3;
+    color: var(--font-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls-container {
+    grid-column: 1/2;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+}
+
+.control-panel {
+    grid-row: 1/2;
+    background: var(--panel-color);
+    border-radius: 50px;
+    width: 350px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.timer-panel {
+    width: 100%;
+    grid-row: 2/3;
+    display: flex;
+    align-items: end;
+    justify-content: space-evenly;
+}
+
+.control-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-label {
+    font-size: .95rem;
+}
+
+.settings-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.settings-info {
+    font-size: 1.8rem;
+}
+
+/* Buttons */
+.button-secondary {
+    background: var(--button-secondary);
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    border: none;
+    color: var(--font-color);
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.button-secondary:hover {
+    background: var(--button-secondary-light);
+}
+
+.button-secondary:active {
+    background: var(--button-secondary-dark);
+}
+
+.button-primary {
+    background: var(--button-primary);
+    color: var(--font-color);
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background: var(--button-primary-dark);
+}
+
+.button-primary:active {
+    background: var(--button-primary-ligth);
+    color: black;
+}
+
+/* Typography */
+.timer {
+    font-family: var(--clock-font);
+    font-size: 11rem;
+    font-weight: 300;
+}
+
+.title {
+    font-family: var(--clock-font);
+    font-weight: 300;
+    font-size: 5rem;
+    color: var(--button-secondary-dark);
+    position: absolute;
+    top: 2rem;
+}
+
+.session {
+    color: var(--session-color);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.break {
+    color: var(--break-color);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+@media screen and (max-width: 800px) {
+    .timer-wrapper {
+        width: 385px;
+        height: 600px;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .timer-display {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .controls-container {
+        grid-row: 2/3;
+    }
+
+    .title {
+        font-size: 3.5rem;
+        top: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .timer-wrapper {
+        width: 340px;
+        height: 600px;
+        grid-template-rows: repeat(2, 1fr);
+        padding: 15px;
+    }
+
+    .timer-display {
+        grid-row: 1;
+        grid-column: 1;
+        width: 310px;
+    }
+    .controls-container {
+        grid-row: 2/3;
+        width: 310;
+    }
+
+    .control-panel {
+        width: 310px;
+    }
+    
+    .button-secondary {
+        width: 120px;
+        height: 120px;
+        border-radius: 40px;
+    }
+
+    .timer {
+        font-size: 9rem;
+    }
+
+
+    .title {
+        font-size: 3rem;
+        top: 10px
+    }
+}

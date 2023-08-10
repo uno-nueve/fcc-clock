@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css'
+// import './styles.css'
+import './twentyfiveplusfive.css'
 import Footer from './Footer';
 
 const initialSession = 25;
@@ -31,7 +32,12 @@ const SettingsControlPanel = ({ handleTime, sessionTime, breakTime }) => {
 const TimerDisplay = ({ timeSwitch, mins, clockMins, secs, clockSecs }) => {
     return (
         <div className="timer-display">
-            <label htmlFor="time-left" className="timer-label" id="timer-label">{ timeSwitch ? 'Session' : 'Break' }</label>
+            <label htmlFor="time-left" id="timer-label">
+                { timeSwitch 
+                    ? <span className='session'>SESSION</span> 
+                    : <span className='break'>BREAK</span> 
+                }
+            </label>
             <div className="timer">
                 <audio src='https://cdn.freesound.org/previews/457/457518_4256189-lq.mp3' id="beep" />
                 <p id="time-left">
@@ -47,8 +53,15 @@ const TimerDisplay = ({ timeSwitch, mins, clockMins, secs, clockSecs }) => {
 const TimerControlPanel = ({ handleStart, handleReset, start }) => {
     return (
         <div className="timer-panel">
-            <button id="start_stop" className='button-secondary' onClick={handleStart}>{ start ? 'PAUSE' : 'START' }</button>
-            <button id="reset" className='button-secondary' onClick={handleReset}>RESET</button>
+            <button id="start_stop" className='button-secondary' onClick={handleStart}>
+                { start 
+                    ? <i className="fa-solid fa-pause"></i> 
+                    : <i className="fa-solid fa-play"></i>
+                }
+            </button>
+            <button id="reset" className='button-secondary' onClick={handleReset}>
+                <i className="fa-solid fa-arrow-rotate-left"></i>
+            </button>
         </div>
     )
 };
@@ -154,14 +167,18 @@ const TwentyFivePlusFive = () => {
     }
 
     return (
-        <div className="timer-wrapper">
+        <div className='container'>
             <h1 className="title">25 + 5 CLOCK</h1>
-            {/* Settings Control Panel */}
-            <SettingsControlPanel handleTime={handleTime} sessionTime={sessionTime} breakTime={breakTime} />
-            {/* Timer Display */}
-            <TimerDisplay timeSwitch={timeSwitch} mins={mins} clockMins={clockMins} secs={secs} clockSecs={clockSecs} />
-            {/* Timer Control Panel */}
-            <TimerControlPanel handleStart={handleStart} handleReset={handleReset} start={start} />
+            <div className="timer-wrapper">
+                <div className="controls-container">
+                    {/* Settings Control Panel */}
+                    <SettingsControlPanel handleTime={handleTime} sessionTime={sessionTime} breakTime={breakTime} />
+                    {/* Timer Control Panel */}
+                    <TimerControlPanel handleStart={handleStart} handleReset={handleReset} start={start} />
+                </div>
+                {/* Timer Display */}
+                <TimerDisplay timeSwitch={timeSwitch} mins={mins} clockMins={clockMins} secs={secs} clockSecs={clockSecs} />
+            </div>
             <Footer />
         </div>
     );

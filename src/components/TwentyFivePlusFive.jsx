@@ -1,7 +1,57 @@
 import React, { useState, useEffect } from 'react';
+import './styles.css'
+import Footer from './Footer';
 
 const initialSession = 25;
 const initialBreak = 5;
+
+const SettingsControlPanel = ({ handleTime, sessionTime, breakTime }) => {
+    return (
+        <div className="control-panel">
+            <div className="control-wrapper">
+                <label htmlFor="session-length" className="settings-label" id="session-label">Session Length</label>
+                <div className="settings-controls">
+                    <button id="session-increment" className='button-primary' onClick={handleTime}>+</button>
+                    <span id="session-length" className='settings-info'>{sessionTime}</span>
+                    <button id="session-decrement" className='button-primary' onClick={handleTime}>-</button>
+                </div>
+            </div>
+            <div className="control-wrapper">
+                <label htmlFor="break-length" className="settings-label" id="break-label">Break Length</label>
+                <div className="settings-controls">
+                    <button id="break-increment" className='button-primary' onClick={handleTime}>+</button>
+                    <span id="break-length" className='settings-info'>{breakTime}</span>
+                    <button id="break-decrement" className='button-primary' onClick={handleTime}>-</button>
+                </div>
+            </div>
+        </div>
+    )
+};
+
+const TimerDisplay = ({ timeSwitch, mins, clockMins, secs, clockSecs }) => {
+    return (
+        <div className="timer-display">
+            <label htmlFor="time-left" className="timer-label" id="timer-label">{ timeSwitch ? 'Session' : 'Break' }</label>
+            <div className="timer">
+                <audio src='https://cdn.freesound.org/previews/457/457518_4256189-lq.mp3' id="beep" />
+                <p id="time-left">
+                    { mins.toString().length === 1 ? clockMins : mins }
+                    :
+                    { secs.toString().length === 1 ? clockSecs : secs }
+                </p>
+            </div>
+        </div>
+    )
+};
+
+const TimerControlPanel = ({ handleStart, handleReset, start }) => {
+    return (
+        <div className="timer-panel">
+            <button id="start_stop" className='button-secondary' onClick={handleStart}>{ start ? 'PAUSE' : 'START' }</button>
+            <button id="reset" className='button-secondary' onClick={handleReset}>RESET</button>
+        </div>
+    )
+};
 
 const TwentyFivePlusFive = () => {
     const [sessionTime, setSessionTime] = useState(initialSession);
@@ -105,38 +155,14 @@ const TwentyFivePlusFive = () => {
 
     return (
         <div className="timer-wrapper">
+            <h1 className="title">25 + 5 CLOCK</h1>
             {/* Settings Control Panel */}
-            <div className="control-panel">
-                <label htmlFor="session-length" id="session-label">Session Length</label>
-                <div className="setting-controls">
-                    <button id="session-increment" onClick={handleTime}>+</button>
-                    <span id="session-length">{sessionTime}</span>
-                    <button id="session-decrement" onClick={handleTime}>-</button>
-                </div>
-                <label htmlFor="break-length" id="break-label">Break Length</label>
-                <div className="setting-controls">
-                    <button id="break-increment" onClick={handleTime}>+</button>
-                    <span id="break-length">{breakTime}</span>
-                    <button id="break-decrement" onClick={handleTime}>-</button>
-                </div>
-            </div>
+            <SettingsControlPanel handleTime={handleTime} sessionTime={sessionTime} breakTime={breakTime} />
             {/* Timer Display */}
-            <div className="timer-display">
-                <label htmlFor="time-left" id="timer-label">{ timeSwitch ? 'Session' : 'Break' }</label>
-                <div className="timer">
-                    <audio src='https://cdn.freesound.org/previews/457/457518_4256189-lq.mp3' id="beep" />
-                    <h3 id="time-left">
-                        { mins.toString().length === 1 ? clockMins : mins }
-                        :
-                        { secs.toString().length === 1 ? clockSecs : secs }
-                    </h3>
-                </div>
-            </div>
+            <TimerDisplay timeSwitch={timeSwitch} mins={mins} clockMins={clockMins} secs={secs} clockSecs={clockSecs} />
             {/* Timer Control Panel */}
-            <div className="control-panel">
-                <button id="start_stop" onClick={handleStart}>{ start ? 'PAUSE' : 'START' }</button>
-                <button id="reset" onClick={handleReset}>RESET</button>
-            </div>
+            <TimerControlPanel handleStart={handleStart} handleReset={handleReset} start={start} />
+            <Footer />
         </div>
     );
 }

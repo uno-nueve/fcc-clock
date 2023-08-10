@@ -1,0 +1,149 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500;600;700;800;900&family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --clock-font: 'Handjet', monospace;
+}
+
+/* Colors */
+:root {
+    --font-color: #FBF5F3;
+    --backgound-gradient: radial-gradient(circle, rgba(202,208,255,1) 0%, rgba(227,227,227,1) 100%); 
+    --button-secondary: #89c2d9;
+    --button-secondary-dark: #468faf;
+    --button-secondary-light: #a9d6e5;
+    --button-primary: #1a1423;
+    --button-primary-ligth: #cddafd;
+}
+
+/* General Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--backgound-gradient);
+    font-size: 16px;
+}
+
+/* Class Styles */
+.timer-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.control-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--font-color);
+    height: 100px;
+    width: 500px;
+    padding: .75rem;
+    margin-bottom: 1rem;
+    margin-top: 7rem;
+    border-radius: 50px;
+}
+
+.control-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-label {
+    font-size: 1.5rem;
+}
+
+.settings-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    margin-top: .75rem;
+}
+
+.settings-info {
+    font-size: 1.5rem;
+}
+
+.timer-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.timer-label {
+    font-family: var(--clock-font);
+    font-size: 5rem;
+    font-weight: 400;
+    color: black;
+}
+
+.timer {
+    font-family: var(--clock-font);
+    font-size: 12rem;
+    font-weight: 300;
+    color: var(--font-color);
+    background: black;
+    width: 550px;
+    border-radius: 60px;
+    margin: 1.5rem;
+}
+
+.timer-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button-secondary {
+    background: var(--button-secondary);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--font-color);
+    width: 100px;
+    padding: .75rem;
+    border: none;
+    border-radius: 50px;
+}
+
+.button-secondary:hover {
+    background: var(--button-secondary-light);
+}
+
+.button-secondary:active {
+    background: var(--button-secondary-dark);
+}
+
+.button-primary {
+    background: var(--button-primary);
+    color: var(--font-color);
+    font-weight: 700;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50px;
+}
+
+.button-primary:active {
+    background: var(--button-primary-ligth);
+    color: black;
+    border: 2px solid black;
+}
+
+.title {
+    font-family: var(--clock-font);
+    font-weight: 300;
+    font-size: 5rem;
+    color: var(--button-secondary-dark);
+    margin-top: 1rem;
+}
